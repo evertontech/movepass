@@ -20,5 +20,5 @@ public class Academia {
 
     private String endereco;
 
-    private Boolean ativo;
+    private Boolean ativo = true;
 }
