@@ -18,4 +18,8 @@ public class AcademiaService {
         entidade.setEndereco(dto.endereco());
         return academiaRepository.save(entidade);
     }
+
+    public Iterable<Academia> listarTodos() {
+        return academiaRepository.findAll();
+    }
 }
