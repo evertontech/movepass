@@ -6,6 +6,8 @@ import io.github.evertontech.movepass.model.repository.AcademiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AcademiaService {
 
@@ -19,7 +21,11 @@ public class AcademiaService {
         return academiaRepository.save(entidade);
     }
 
-    public Iterable<Academia> listarTodos() {
-        return academiaRepository.findAll();
+    public Iterable<Academia> listarTodasAtivas() {
+        return academiaRepository.findAllByAtivoTrue();
+    }
+
+    public Optional<Academia> ObterAtivaPorId(Long id) {
+        return academiaRepository.findByIdAndAtivoTrue(id);
     }
 }

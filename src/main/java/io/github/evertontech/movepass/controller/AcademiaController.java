@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(path = "/academias")
 @Tag(name = "Academia", description = "Endpoints para Gerenciar Academias")
@@ -23,8 +25,14 @@ public class AcademiaController {
     }
 
     @GetMapping
-    @Operation(summary = "Lista Todas as Academias")
-    public Iterable<Academia> listarTodos() {
-        return academiaService.listarTodos();
+    @Operation(summary = "Lista Todas as Academias Ativas")
+    public Iterable<Academia> listarTodasAtivas() {
+        return academiaService.listarTodasAtivas();
+    }
+
+    @GetMapping(path = {"/{id}"})
+    @Operation(summary = "Obter Academia por Id")
+    public Optional<Academia> ObterAtivaPorId(@PathVariable Long id) {
+        return academiaService.ObterAtivaPorId(id);
     }
 }
