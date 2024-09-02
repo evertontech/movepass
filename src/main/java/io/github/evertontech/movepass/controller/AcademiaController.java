@@ -6,6 +6,7 @@ import io.github.evertontech.movepass.model.entity.Academia;
 import io.github.evertontech.movepass.service.AcademiaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class AcademiaController {
 
     @PostMapping
     @Operation(summary = "Criar uma Academia")
-    public ResponseEntity<Academia> criar(@RequestBody AcademiaDTO dto) {
+    public ResponseEntity<Academia> criar(@RequestBody @Valid AcademiaDTO dto) {
         var academia = academiaService.criar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(academia);
     }
@@ -47,7 +48,7 @@ public class AcademiaController {
 
     @PutMapping(path = {"/{id}"})
     @Operation(summary = "Atualizar academia por Id")
-    public ResponseEntity<Academia> atualizar(@RequestBody AcademiaDTO dto, @PathVariable Long id) {
+    public ResponseEntity<Academia> atualizar(@RequestBody @Valid AcademiaDTO dto, @PathVariable Long id) {
         var academia = academiaService.atualizar(dto, id);
         return ResponseEntity.ok(academia);
     }
