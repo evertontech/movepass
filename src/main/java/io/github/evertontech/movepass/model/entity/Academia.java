@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +21,6 @@ public class Academia {
     private String endereco;
 
     private Boolean ativo = true;
-
 
     public void inativar() {
         this.setAtivo(false);
