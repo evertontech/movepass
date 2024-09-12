@@ -4,11 +4,8 @@ import io.github.evertontech.movepass.dto.AcademiaDTO;
 import io.github.evertontech.movepass.exception.RegistroNaoEncontradoException;
 import io.github.evertontech.movepass.model.entity.Academia;
 import io.github.evertontech.movepass.model.repository.AcademiaRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AcademiaService {
@@ -34,20 +31,13 @@ public class AcademiaService {
     }
 
     public Academia atualizar(AcademiaDTO dto, Long id) {
-        var pesquisa = academiaRepository.findByIdAndAtivoTrue(id);
-        if (pesquisa.isEmpty()) {
-            throw new RegistroNaoEncontradoException();
-        }
+        obterAtivaPorId(id);
         var entidade = AcademiaDTO.paraEntidade(dto, id);
         return academiaRepository.save(entidade);
     }
 
     public Academia inativar(Long id) {
-        var pesquisa = academiaRepository.findByIdAndAtivoTrue(id);
-        if (pesquisa.isEmpty()) {
-            throw new RegistroNaoEncontradoException();
-        }
-        var entidade = pesquisa.get();
+        var entidade = obterAtivaPorId(id);
         entidade.inativar();
         return academiaRepository.save(entidade);
     }
