@@ -16,9 +16,13 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    public String nome;
-    public String email;
-    public LocalDate dataContratacao;
-    public Boolean ativo;
+    private Long id;
+    private String nome;
+    private String email;
+    private LocalDate dataContratacao;
+    private Boolean ativo;
+
+    public void inativar() {
+        this.setAtivo(false);
+    }
 }
