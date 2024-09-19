@@ -4,14 +4,12 @@ import io.github.evertontech.movepass.dto.AcademiaDTO;
 import io.github.evertontech.movepass.exception.RegistroNaoEncontradoException;
 import io.github.evertontech.movepass.model.entity.Academia;
 import io.github.evertontech.movepass.model.repository.AcademiaRepository;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
