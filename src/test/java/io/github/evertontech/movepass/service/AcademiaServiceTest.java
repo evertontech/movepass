@@ -83,16 +83,16 @@ public class AcademiaServiceTest {
         assertThrows(RegistroNaoEncontradoException.class, () -> academiaService.obterAtivaPorId(anyLong()));
     }
 
-//    @Test
-//    @DisplayName("Deve atualizar uma academia existente")
-//    void atualizarAcademiaTest() {
-//        var academiaMock = criarAcademia();
-//        when(academiaRepository.save(any(Academia.class))).thenReturn(academiaMock);
-//        academiaService.atualizar(criarDtoFake(), anyLong());
-//        assertNotNull(academiaMock);
-//        assertTrue(academiaMock.getAtivo());
-//    }
-
+    @Test
+    @DisplayName("Deve atualizar uma academia existente")
+    void atualizarAcademiaTest() {
+        var academiaMock = criarAcademia();
+        when(academiaRepository.findByIdAndAtivoTrue(anyLong())).thenReturn(Optional.of(academiaMock));
+        when(academiaRepository.save(any(Academia.class))).thenReturn(academiaMock);
+        var academia = academiaService.atualizar(criarDtoFake(), anyLong());
+        assertNotNull(academia);
+        assertTrue(academia.getAtivo());
+    }
 
     @Test
     @DisplayName("Deve inativar uma academia ativa")
