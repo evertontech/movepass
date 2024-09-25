@@ -22,6 +22,11 @@ public class Funcionario {
     private LocalDate dataContratacao;
     private Boolean ativo;
 
+    public Funcionario() {
+        this.setDataContratacao(LocalDate.now());
+        this.setAtivo(true);
+    }
+
     public void inativar() {
         this.setAtivo(false);
     }

@@ -23,7 +23,7 @@ public class FuncionarioService {
     }
 
     public Funcionario obterPorId(Long id) {
-        var pesquisa = funcionarioRepository.findByIdAndAtivoTrue();
+        var pesquisa = funcionarioRepository.findByIdAndAtivoTrue(id);
         if (pesquisa.isEmpty()) {
             throw new RegistroNaoEncontradoException();
         }

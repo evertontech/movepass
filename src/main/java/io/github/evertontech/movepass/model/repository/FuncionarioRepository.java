@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface FuncionarioRepository extends CrudRepository<Funcionario, Long> {
 
-    Optional<Funcionario> findByIdAndAtivoTrue();
+    Optional<Funcionario> findByIdAndAtivoTrue(Long id);
 }
