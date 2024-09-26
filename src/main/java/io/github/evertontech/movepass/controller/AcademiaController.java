@@ -27,36 +27,36 @@ public class AcademiaController {
 
     @PostMapping
     @Operation(summary = "Criar uma Academia")
-    public ResponseEntity<Academia> criar(@RequestBody @Valid AcademiaDTO dto) {
-        var academia = academiaService.criar(dto);
+    public ResponseEntity<Academia> criarAcademia(@RequestBody @Valid AcademiaDTO dto) {
+        var academia = academiaService.criarAcademia(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(academia);
     }
 
     @GetMapping
     @Operation(summary = "Listar Todas as Academias Ativas")
-    public ResponseEntity<Iterable<Academia>> listarTodasAtivas() {
-        var academias = academiaService.listarTodasAtivas();
+    public ResponseEntity<Iterable<Academia>> listarTodasAsAcademiasAtivas() {
+        var academias = academiaService.listarTodasAsAcademiasAtivas();
         return ResponseEntity.ok(academias);
     }
 
     @GetMapping(path = {"/{id}"})
     @Operation(summary = "Obter Academia Ativa por Id")
-    public ResponseEntity<Academia> obterAtivaPorId(@PathVariable Long id) {
-        var academia = academiaService.obterAtivaPorId(id);
+    public ResponseEntity<Academia> obterAcademiaAtivaPorId(@PathVariable Long id) {
+        var academia = academiaService.obterAcademiaAtivaPorId(id);
         return ResponseEntity.ok(academia);
     }
 
     @PutMapping(path = {"/{id}"})
     @Operation(summary = "Atualizar academia por Id")
-    public ResponseEntity<Academia> atualizar(@RequestBody @Valid AcademiaDTO dto, @PathVariable Long id) {
-        var academia = academiaService.atualizar(dto, id);
+    public ResponseEntity<Academia> atualizarAcademiaAtiva(@RequestBody @Valid AcademiaDTO dto, @PathVariable Long id) {
+        var academia = academiaService.atualizarAcademiaAtiva(dto, id);
         return ResponseEntity.ok(academia);
     }
 
     @DeleteMapping(path = {"/{id}"})
     @Operation(summary = "Inativar Academia por Id")
-    public ResponseEntity<Academia> inativar(@PathVariable Long id) {
-        var academia = academiaService.inativar(id);
+    public ResponseEntity<Academia> inativarAcademiaAtiva(@PathVariable Long id) {
+        var academia = academiaService.inativarAcademiaAtiva(id);
         return ResponseEntity.ok(academia);
     }
 }

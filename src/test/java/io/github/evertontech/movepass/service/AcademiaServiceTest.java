@@ -45,7 +45,7 @@ public class AcademiaServiceTest {
     void criarTest() {
         var dto = criarDtoFake();
         when(academiaRepository.save(any(Academia.class))).thenReturn(AcademiaDTO.paraEntidade(dto));
-        var academia = academiaService.criar(dto);
+        var academia = academiaService.criarAcademia(dto);
         assertNotNull(academia);
         verify(academiaRepository, times(1)).save(any(Academia.class));
     }
@@ -55,7 +55,7 @@ public class AcademiaServiceTest {
     void listarAcademiasAtivasTest() {
         var academiasMock = Arrays.asList(criarAcademia(), criarAcademia());
         when(academiaRepository.findAllByAtivoTrue()).thenReturn(academiasMock);
-        var academias = academiaService.listarTodasAtivas();
+        var academias = academiaService.listarTodasAsAcademiasAtivas();
         assertNotNull(academias);
         assertNotNull(academias.iterator().next().getId());
         assertTrue(academias.iterator().next().getAtivo());
@@ -67,7 +67,7 @@ public class AcademiaServiceTest {
     void obterPorIdTest() {
         var academiaMock = Optional.of(criarAcademia());
         when(academiaRepository.findByIdAndAtivoTrue(anyLong())).thenReturn(academiaMock);
-        var academia = academiaService.obterAtivaPorId(anyLong());
+        var academia = academiaService.obterAcademiaAtivaPorId(anyLong());
         assertNotNull(academia);
         assertTrue(academia.getAtivo());
         verify(academiaRepository, times(1)).findByIdAndAtivoTrue(anyLong());
@@ -78,7 +78,7 @@ public class AcademiaServiceTest {
     void obterPorIdTest2() {
         Optional<Academia> academiaMock = Optional.empty();
         when(academiaRepository.findByIdAndAtivoTrue(anyLong())).thenReturn(academiaMock);
-        assertThrows(RegistroNaoEncontradoException.class, () -> academiaService.obterAtivaPorId(anyLong()));
+        assertThrows(RegistroNaoEncontradoException.class, () -> academiaService.obterAcademiaAtivaPorId(anyLong()));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class AcademiaServiceTest {
         var academiaMock = criarAcademia();
         when(academiaRepository.findByIdAndAtivoTrue(anyLong())).thenReturn(Optional.of(academiaMock));
         when(academiaRepository.save(any(Academia.class))).thenReturn(academiaMock);
-        var academia = academiaService.atualizar(criarDtoFake(), anyLong());
+        var academia = academiaService.atualizarAcademiaAtiva(criarDtoFake(), anyLong());
         assertNotNull(academia);
         assertTrue(academia.getAtivo());
     }
@@ -97,7 +97,7 @@ public class AcademiaServiceTest {
     void inativarAcademiaTest() {
         Optional<Academia> academiaMock = Optional.of(criarAcademia());
         when(academiaRepository.findByIdAndAtivoTrue(anyLong())).thenReturn(academiaMock);
-        academiaService.inativar(anyLong());
+        academiaService.inativarAcademiaAtiva(anyLong());
         assertFalse(academiaMock.get().getAtivo());
     }
 }
