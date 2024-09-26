@@ -19,7 +19,7 @@ public class FuncionarioService {
     }
 
     public Iterable<Funcionario> listar() {
-        return funcionarioRepository.findAll();
+        return funcionarioRepository.findAllByAtivoTrue();
     }
 
     public Funcionario obterPorId(Long id) {
