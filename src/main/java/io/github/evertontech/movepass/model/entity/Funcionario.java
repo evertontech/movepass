@@ -19,8 +19,8 @@ public class Funcionario {
     private Long id;
     private String nome;
     private String email;
-    private LocalDate dataContratacao;
     private Boolean ativo;
+    private LocalDate dataContratacao;
 
     public Funcionario() {
         this.setDataContratacao(LocalDate.now());
