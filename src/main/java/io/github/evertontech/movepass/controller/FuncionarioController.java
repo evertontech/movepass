@@ -14,27 +14,27 @@ public class FuncionarioController {
     FuncionarioService funcionarioService;
 
     @PostMapping
-    public Funcionario criar(@RequestBody FuncionarioDTO dto) {
-        return funcionarioService.criar(dto);
+    public Funcionario criarFuncionario(@RequestBody FuncionarioDTO dto) {
+        return funcionarioService.criarFuncionario(dto);
     }
 
     @GetMapping
-    public Iterable<Funcionario> listar() {
-        return funcionarioService.listar();
+    public Iterable<Funcionario> listarFuncionariosAtivos() {
+        return funcionarioService.listarFuncionariosAtivos();
     }
 
     @GetMapping(path = "/{id}")
-    public Funcionario obterPorId(@PathVariable Long id) {
-        return funcionarioService.obterPorId(id);
+    public Funcionario obterFuncionarioAtivoPorId(@PathVariable Long id) {
+        return funcionarioService.obterFuncionarioAtivoPorId(id);
     }
 
     @PutMapping(path = "/{id}")
-    public Funcionario atualizar(@RequestBody FuncionarioDTO dto, @PathVariable Long id) {
-        return funcionarioService.atualizar(dto, id);
+    public Funcionario atualizarFuncionarioAtivo(@RequestBody FuncionarioDTO dto, @PathVariable Long id) {
+        return funcionarioService.atualizarFuncionarioAtivo(dto, id);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void inativar(@PathVariable Long id) {
-        funcionarioService.inativar(id);
+    public void inativarFuncionarioAtivo(@PathVariable Long id) {
+        funcionarioService.inativarFuncionarioAtivo(id);
     }
 }

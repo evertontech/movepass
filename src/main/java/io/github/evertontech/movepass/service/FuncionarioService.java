@@ -13,16 +13,16 @@ public class FuncionarioService {
     @Autowired
     FuncionarioRepository funcionarioRepository;
 
-    public Funcionario criar(FuncionarioDTO dto) {
+    public Funcionario criarFuncionario(FuncionarioDTO dto) {
         var entidade = FuncionarioDTO.paraEntidade(dto);
         return funcionarioRepository.save(entidade);
     }
 
-    public Iterable<Funcionario> listar() {
+    public Iterable<Funcionario> listarFuncionariosAtivos() {
         return funcionarioRepository.findAllByAtivoTrue();
     }
 
-    public Funcionario obterPorId(Long id) {
+    public Funcionario obterFuncionarioAtivoPorId(Long id) {
         var pesquisa = funcionarioRepository.findByIdAndAtivoTrue(id);
         if (pesquisa.isEmpty()) {
             throw new RegistroNaoEncontradoException();
@@ -30,14 +30,14 @@ public class FuncionarioService {
         return pesquisa.get();
     }
 
-    public Funcionario atualizar(FuncionarioDTO dto, Long id) {
-        obterPorId(id);
+    public Funcionario atualizarFuncionarioAtivo(FuncionarioDTO dto, Long id) {
+        obterFuncionarioAtivoPorId(id);
         var entidade = FuncionarioDTO.paraEntidade(dto, id);
         return funcionarioRepository.save(entidade);
     }
 
-    public void inativar(Long id) {
-        var funcionario = obterPorId(id);
+    public void inativarFuncionarioAtivo(Long id) {
+        var funcionario = obterFuncionarioAtivoPorId(id);
         funcionario.inativar();
         funcionarioRepository.save(funcionario);
     }
