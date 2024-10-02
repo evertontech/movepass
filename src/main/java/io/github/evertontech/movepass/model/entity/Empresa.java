@@ -1,5 +1,6 @@
 package io.github.evertontech.movepass.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,5 +24,10 @@ public class Empresa {
 
     @OneToMany
     @JoinColumn(name = "empresa_id")
+    @JsonIgnore
     private List<Funcionario> funcionarios;
+
+    public Empresa() {
+        this.setAtivo(true);
+    }
 }
