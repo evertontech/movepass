@@ -9,6 +9,8 @@ import io.github.evertontech.movepass.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(path = "/empresas")
 public class EmpresaController {
@@ -37,5 +39,10 @@ public class EmpresaController {
     @GetMapping(path = "/{empresaId}/funcionarios")
     public Iterable<Funcionario> listarFuncionariosAtivosPorEmpresaId(@PathVariable Long empresaId) {
         return funcionarioService.listarFuncionariosAtivosPorEmpresaId(empresaId);
+    }
+
+    @GetMapping(path = "/{empresaId}")
+    public Optional<Empresa> obterEmpresaPorId(@PathVariable Long empresaId) {
+        return empresaService.obterPorId(empresaId);
     }
 }

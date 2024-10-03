@@ -26,5 +26,4 @@ public class EmpresaService {
     public Optional<Empresa> obterPorId(Long id) {
         return empresaRepository.findByIdAndAtivoTrue(id);
     }
-
 }

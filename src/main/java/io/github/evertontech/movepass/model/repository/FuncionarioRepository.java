@@ -12,5 +12,4 @@ public interface FuncionarioRepository extends CrudRepository<Funcionario, Long>
     Iterable<Funcionario> findAllByAtivoTrue();
 
     Iterable<Funcionario> findAllByAtivoTrueAndEmpresaId(Long id);
-
 }
