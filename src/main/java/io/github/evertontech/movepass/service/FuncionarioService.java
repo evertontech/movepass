@@ -13,13 +13,17 @@ public class FuncionarioService {
     @Autowired
     FuncionarioRepository funcionarioRepository;
 
-    public Funcionario criarFuncionario(FuncionarioDTO dto) {
-        var entidade = FuncionarioDTO.paraEntidade(dto);
+    public Funcionario criarFuncionario(FuncionarioDTO dto, Long empresaId) {
+        var entidade = FuncionarioDTO.paraEntidade(dto, empresaId);
         return funcionarioRepository.save(entidade);
     }
 
     public Iterable<Funcionario> listarFuncionariosAtivos() {
         return funcionarioRepository.findAllByAtivoTrue();
+    }
+
+    public Iterable<Funcionario> listarFuncionariosAtivosPorEmpresaId(Long id) {
+        return funcionarioRepository.findAllByAtivoTrueAndEmpresaId(id);
     }
 
     public Funcionario obterFuncionarioAtivoPorId(Long id) {

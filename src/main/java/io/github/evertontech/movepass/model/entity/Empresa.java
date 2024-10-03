@@ -22,9 +22,8 @@ public class Empresa {
 
     private Boolean ativo;
 
-    @OneToMany
-    @JoinColumn(name = "empresa_id")
     @JsonIgnore
+    @OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY)
     private List<Funcionario> funcionarios;
 
     public Empresa() {

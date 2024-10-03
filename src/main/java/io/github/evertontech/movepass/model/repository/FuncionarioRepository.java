@@ -10,4 +10,7 @@ public interface FuncionarioRepository extends CrudRepository<Funcionario, Long>
     Optional<Funcionario> findByIdAndAtivoTrue(Long id);
 
     Iterable<Funcionario> findAllByAtivoTrue();
+
+    Iterable<Funcionario> findAllByAtivoTrueAndEmpresaId(Long id);
+
 }

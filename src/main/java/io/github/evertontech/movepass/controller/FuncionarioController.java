@@ -13,11 +13,6 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @PostMapping
-    public Funcionario criarFuncionario(@RequestBody FuncionarioDTO dto) {
-        return funcionarioService.criarFuncionario(dto);
-    }
-
     @GetMapping
     public Iterable<Funcionario> listarFuncionariosAtivos() {
         return funcionarioService.listarFuncionariosAtivos();
