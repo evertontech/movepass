@@ -45,4 +45,9 @@ public class EmpresaController {
     public Optional<Empresa> obterEmpresaPorId(@PathVariable Long empresaId) {
         return empresaService.obterPorId(empresaId);
     }
+
+    @PutMapping(path = "/{empresaId}")
+    public Empresa atualizarEmpresa(@RequestBody EmpresaDTO dto, @PathVariable Long empresaId) {
+        return empresaService.atualizar(dto, empresaId);
+    }
 }

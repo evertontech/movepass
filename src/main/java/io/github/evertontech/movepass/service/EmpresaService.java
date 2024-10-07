@@ -26,4 +26,9 @@ public class EmpresaService {
     public Optional<Empresa> obterPorId(Long id) {
         return empresaRepository.findByIdAndAtivoTrue(id);
     }
+
+    public Empresa atualizar(EmpresaDTO dto, Long empresaId) {
+        var entidade = EmpresaDTO.paraEntidade(dto, empresaId);
+        return empresaRepository.save(entidade);
+    }
 }
