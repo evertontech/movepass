@@ -31,4 +31,13 @@ public class EmpresaService {
         var entidade = EmpresaDTO.paraEntidade(dto, empresaId);
         return empresaRepository.save(entidade);
     }
+
+    public void inativar(Long id) {
+        var pesquisa = empresaRepository.findByIdAndAtivoTrue(id);
+        if (pesquisa.isPresent()) {
+            var empresa = pesquisa.get();
+            empresa.setAtivo(false);
+            empresaRepository.save(empresa);
+        }
+    }
 }
