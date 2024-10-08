@@ -50,4 +50,9 @@ public class EmpresaController {
     public Empresa atualizarEmpresa(@RequestBody EmpresaDTO dto, @PathVariable Long empresaId) {
         return empresaService.atualizar(dto, empresaId);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void inativarEmpresa(@PathVariable Long id) {
+        empresaService.inativar(id);
+    }
 }
